@@ -1,6 +1,5 @@
 package com.bignerdrach.android.nerdlauncher;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -56,17 +55,17 @@ public class NerdLauncherFragment extends Fragment {
             public int compare(ResolveInfo a, ResolveInfo b) {
                 PackageManager pm = getActivity().getPackageManager();
                 return String.CASE_INSENSITIVE_ORDER.compare(
-                    a.loadLabel(pm).toString(),
-                    b.loadLabel(pm).toString());
+                        a.loadLabel(pm).toString(),
+                        b.loadLabel(pm).toString());
             }
         });
 
         Log.i(TAG, "Found " + activities.size() + " activities.");
-        mRecyclerView.setAdapter(new ActivityApadter(activities));
+        mRecyclerView.setAdapter(new ActivityAdapter(activities));
     }
 
     private class ActivityHolder extends RecyclerView.ViewHolder
-        implements View.OnClickListener {
+            implements View.OnClickListener {
 
         private ResolveInfo mResolveInfo;
         private TextView mNameTextView;
@@ -96,10 +95,10 @@ public class NerdLauncherFragment extends Fragment {
         }
     }
 
-    private class ActivityApadter extends RecyclerView.Adapter<ActivityHolder> {
+    private class ActivityAdapter extends RecyclerView.Adapter<ActivityHolder> {
         private final List<ResolveInfo> mActivities;
 
-        public ActivityApadter(List<ResolveInfo> activities) {
+        public ActivityAdapter(List<ResolveInfo> activities) {
             mActivities = activities;
         }
 
